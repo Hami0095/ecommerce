@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/details_ImageID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="21dp"
+            tools:layout_editor_absoluteY="4dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/details_nameID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Name"
+            android:textSize="22pt"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="184dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/details_descriptionID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:text="Lores posem i whsa apiwjfsa asdijpasdpdad iapdjqoen a padpqe padmncxpoq"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="271dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+        <TextView
+            android:id="@+id/details_priceID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="340dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:text="Pkr100"
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to cart"
+            android:onClick=""
+            tools:ignore="onClick"
+             />
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
