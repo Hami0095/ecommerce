@@ -16,6 +16,7 @@ class MyAdapter(private val itemsList: ArrayList<Items>) : RecyclerView.Adapter<
 
     fun setOnClickListener(listener: onItemClickListener){
         myListener = listener
+        
     }
 
     class MyViewHolder(itemView: View, listener: onItemClickListener): RecyclerView.ViewHolder(itemView){
