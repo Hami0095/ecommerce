@@ -9,17 +9,16 @@ import com.google.android.material.imageview.ShapeableImageView
 
 class MyAdapter(private val itemsList: ArrayList<Items>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-    private lateinit var myListener: onItemClickListener
-    interface onItemClickListener{
+    private lateinit var myListener: OnItemClickListener
+    interface OnItemClickListener{
         fun onItemClick(position: Int)
     }
 
-    fun setOnClickListener(listener: onItemClickListener){
+    fun setOnClickListener(listener: OnItemClickListener){
         myListener = listener
-        
     }
 
-    class MyViewHolder(itemView: View, listener: onItemClickListener): RecyclerView.ViewHolder(itemView){
+    class MyViewHolder(itemView: View, listener: OnItemClickListener): RecyclerView.ViewHolder(itemView){
         val titleImage : ShapeableImageView = itemView.findViewById(R.id.title_image)
         val titleHeading: TextView = itemView.findViewById(R.id.titleHeading)
         val titlePrice: TextView = itemView.findViewById(R.id.TitlePriceID)
