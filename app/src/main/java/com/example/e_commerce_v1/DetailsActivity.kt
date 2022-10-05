@@ -17,6 +17,9 @@ class DetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.details_page)
+
+
+
         val detailsName: TextView = findViewById(R.id.details_nameID)
         val detailsImg: ImageView = findViewById(R.id.details_ImageID)
         val detailsDesc: TextView = findViewById(R.id.details_descriptionID)
@@ -28,11 +31,16 @@ class DetailsActivity : AppCompatActivity() {
         val price = bundle.getString("price")
         val image = bundle.getInt("imageId")
         val desc = bundle.getString("description")
-        val args = intent.getBundleExtra("BUNDLE")
-        val cartList = args!!.getSerializable("ARRAYLIST") as ArrayList<Items>?
         cartBtn.setOnClickListener {
             val item = Items(image,name.toString(),price.toString(),desc.toString())
-            cartList?.add(item)
+            if(!cart.itemsList.contains(item)){
+                item.quantity++
+                print(item.heading)
+                cart.itemsList.add(item)
+            }else{  // if the item is present in the cart, then just increment the quantity of the item
+                item.quantity++
+            }
+            print(cart.itemsList.size)
             Toast.makeText(this@DetailsActivity, "Item added to cart!", Toast.LENGTH_SHORT).show()
         }
         detailsName.text = name

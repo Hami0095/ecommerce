@@ -8,6 +8,12 @@
         android:icon="@drawable/ic_baseline_search_24"
         app:showAsAction="always|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
-
+    <item
+        android:id="@+id/cart_section"
+        android:title="cart"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        app:showAsAction="always|withText"
+        app:actionViewClass="android.widget.Button"
+        />
 
 </menu>

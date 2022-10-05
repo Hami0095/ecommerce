@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.io.Serializable
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var heading: Array<String>
     lateinit var price: Array<String>
     lateinit var description: Array<String>
-    var cartList = ArrayList<Any>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -56,20 +55,20 @@ class MainActivity : AppCompatActivity() {
             "Green Shirt",
         )
         price = arrayOf(
-            "Pkr 1000",
-            "Pkr 1500",
-            "Pkr 1300",
-            "Pkr 1600",
-            "Pkr 1200",
-            "Pkr 1670",
-            "Pkr 1890",
-            "Pkr 1320",
-            "Pkr 1210",
-            "Pkr 1300",
-            "Pkr 1600",
-            "Pkr 2000",
-            "Pkr 1300",
-            "Pkr 1000",
+            "1000",
+            "1500",
+            "1300",
+            "1600",
+            "1200",
+            "1670",
+            "1890",
+            "1320",
+            "1210",
+            "1300",
+            "1600",
+            "2000",
+            "1300",
+            "1000",
         )
         description = arrayOf(
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus dui, dictum id scelerisque sed, maximus vel mi. In lectus tellus, tempor eget vehicula at, fringilla sit amet est. Mauris sagittis dolor pretium viverra rutrum. Sed congue pharetra facilisis. Morbi sem mi, ultricies varius massa et, accumsan sagittis orci. Etiam urna felis, pretium quis ultricies at, lacinia id ante. Donec ligula lacus, bibendum eu luctus quis, viverra ut odio. Maecenas lacus nunc, tempus et venenatis eget, porta sit amet nibh. Curabitur non scelerisque nisl. Donec facilisis porttitor nunc, eget congue arcu pharetra a. Nam mattis lacus sit amet felis suscipit hendrerit. Nulla interdum massa in tincidunt tincidunt. Sed ullamcorper sed mauris id accumsan. Pellentesque a iaculis neque. Quisque id augue sed turpis commodo luctus. In placerat neque vel justo scelerisque, nec facilisis diam scelerisque.",
@@ -98,12 +97,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_item, menu)
         val item = menu?.findItem(R.id.search_section)
+        val cartBtn = menu?.findItem(R.id.cart_section)
+        val btn = cartBtn?.actionView
+        btn?.setOnClickListener {
+            val cart_intent = Intent(this@MainActivity, CartActivity::class.java )
+            startActivity(cart_intent)
+        }
         val searchView = item?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 TODO("Not yet implemented")
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 tempArrayList.clear()
                 val searchText = newText!!.toLowerCase(Locale.getDefault())
@@ -118,24 +122,17 @@ class MainActivity : AppCompatActivity() {
                     tempArrayList.clear()
                     tempArrayList.addAll(newArrayList)
                     newRecyclerView.adapter!!.notifyDataSetChanged()
-
                 }
-
                 return false
             }
-
         })
-
-
-
         return super.onCreateOptionsMenu(menu)
-
     }
 
     private fun getUserData(){
         lateinit var item:Items
         for(i in imageId.indices){
-            item= Items(titleImage= imageId[i], heading = heading[i], price= price[i], description= description[i])
+            item= Items(titleImage = imageId[i], heading = heading[i], price = price[i], description = description[i])
             newArrayList.add(item)
         }
         tempArrayList.addAll(newArrayList)
@@ -143,14 +140,11 @@ class MainActivity : AppCompatActivity() {
         newRecyclerView.adapter= adapter
         adapter.setOnClickListener(object: MyAdapter.OnItemClickListener{
             override fun onItemClick(position: Int) {
-                val args = Bundle()
-                args.putSerializable("ARRAYLIST", cartList as Serializable?)
                 val intent = Intent(this@MainActivity, DetailsActivity::class.java )
                 intent.putExtra("heading", newArrayList[position].heading)
                 intent.putExtra("imageId", newArrayList[position].titleImage)
                 intent.putExtra("description", newArrayList[position].description)
                 intent.putExtra("price", newArrayList[position].price)
-                intent.putExtra("BUNDLE", args)
                 startActivity(intent)
             }
         })
